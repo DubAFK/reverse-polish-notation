@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ReversePolishNotation.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800"
+        x:Class="ReversePolishNotation.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Width="800"
+        SizeToContent="Height"
+        Title="Reverse Polish Notation Solver"
+        CanResize="False">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Border>
+        <StackPanel Margin="8" Spacing="5">
+
+            <TextBlock>
+                Enter numeric expression:
+            </TextBlock>
+            <TextBox VerticalAlignment="Center" PlaceholderText="Here..." Text="{Binding Expression}">
+                <TextBox.KeyBindings>
+                    <KeyBinding Command="{Binding ConvertToCommand}" Gesture="Enter" />
+                </TextBox.KeyBindings>
+            </TextBox>
+
+            <Button HorizontalAlignment="Center" Command="{Binding ConvertToCommand}">
+                Calculate
+            </Button>
+
+            <Border Background="#303030" CornerRadius="6">
+                <StackPanel Margin="8" Spacing="5">
+                    <TextBlock>
+                        Expression in Reverse Polish notation:
+                    </TextBlock>
+
+                    <TextBox VerticalAlignment="Center" IsReadOnly="True" Text="{Binding ExpressionRpn}">
+                        
+                    </TextBox>
+
+                    <TextBlock>
+                        Сalculated value:
+                    </TextBlock>
+                    <TextBox VerticalAlignment="Center" IsReadOnly="True" Text="{Binding Value}">
+                        
+                    </TextBox>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+
+    </Border>
+
+</Window>
